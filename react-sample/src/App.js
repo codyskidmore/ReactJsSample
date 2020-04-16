@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-const App = props => {
-    const [personsState, setPersonsState] = useState({
-      persons: [
-        {name: 'Cody', age: 30},
-        {name: 'Rick', age: 33},
-        {name: 'Bob', age: 34}
-      ],
-      otherState: 'some other value'
-    });
+class App extends Component {
+  state = {
+    persons: [
+      {name: 'Cody', age: 30},
+      {name: 'Rick', age: 33},
+      {name: 'Bob', age: 34}
+    ]
+  }
 
-  const clickHandler = () => {
-    setPersonsState({
+  clickHandler = () => {
+    this.setState({
       persons: [
         {name: 'Dale', age: 30},
-        {name: 'Rick', age: 33}, 
+        {name: 'Rick', age: 33},
         {name: 'Bob', age: 34}
-      ],
-      otherState: personsState.otherState
+      ]
     });
-  };
+  }
 
-  return (
-    <div className = "App">
-      <h1>Hi, Im a React App</h1>
-      <p>This is working.</p>
-      <button onClick={clickHandler}>Click Me!</button>
-      <Person name={personsState.persons[0].name} age={personsState.persons[0].age}>I like photography.</Person>
-      <Person name={personsState.persons[1].name} age={personsState.persons[1].age}></Person>
-      <Person name={personsState.persons[2].name} age={personsState.persons[2].age}></Person>
-    </div>
-  );
+  render() {
+    return (
+      <div className = "App">
+        <h1>Hi, Im a React App</h1>
+        <p>This is working.</p>
+        <button onClick={this.clickHandler}>Click Me!</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>I like photography.</Person>
+        <Person name="Rick" age="32"/>
+        <Person name="Bob" age="33"/>
+      </div>
+    );
+  }
 }
 
 export default App;
